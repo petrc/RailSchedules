@@ -45,8 +45,8 @@
                 android:text="@{trainDTO.direction}"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewCode"
                 app:layout_constraintStart_toEndOf="@+id/textViewCode"
+                app:layout_constraintTop_toTopOf="@+id/textViewCode"
                 tools:text="direction" />
 
             <TextView

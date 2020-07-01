@@ -19,26 +19,6 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@{viewModel.train.code}"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="D901" />
-        </androidx.cardview.widget.CardView>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewSchedules"
             android:layout_width="match_parent"
@@ -49,17 +29,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/train_schedule_station_list_item" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.schedules.size() > 0 ? `` : `No scheduled routes at this time`}"
+            android:text="@{viewModel.resultMessage}"
             android:textSize="14sp"
+            android:visibility="@{viewModel.resultMessage != null ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Result message" />
 
         <ProgressBar
             android:layout_width="wrap_content"

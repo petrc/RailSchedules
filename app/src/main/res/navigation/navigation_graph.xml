@@ -28,8 +28,12 @@
     <fragment
         android:id="@+id/stationSchedulesFragment"
         android:name="com.example.irelandtrainapp.fragments.StationSchedulesFragment"
-        android:label="Station schedules"
+        android:label="{stationCode}"
+        android:sublabel=""
         tools:layout="@layout/station_schedules_fragment">
+        <argument
+            android:name="stationCode"
+            app:argType="string" />
         <action
             android:id="@+id/action_stationSchedulesFragment_to_trainSchedulesFragment"
             app:destination="@id/trainSchedulesFragment" />
@@ -46,7 +50,7 @@
     <fragment
         android:id="@+id/trainSchedulesFragment"
         android:name="com.example.irelandtrainapp.fragments.TrainSchedulesFragment"
-        android:label="Train schedule"
+        android:label="{trainCode}"
         tools:layout="@layout/train_schedules_fragment">
         <argument
             android:name="trainCode"

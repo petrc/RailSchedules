@@ -31,7 +31,9 @@ class StationSchedulesFragment : Fragment() {
                 ?.navigate(R.id.action_stationSchedulesFragment_to_trainSchedulesFragment, bundle)
         }
 
-        stationsViewModel.loadSchedules(arguments?.getString("stationCode"))
+        arguments?.let { args ->
+            stationsViewModel.loadSchedules(args.getString("stationCode", ""))
+        }
 
         val binding = StationSchedulesFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this

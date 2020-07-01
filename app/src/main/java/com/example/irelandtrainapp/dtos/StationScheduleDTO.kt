@@ -70,28 +70,28 @@ class StationScheduleDTO @JvmOverloads constructor(
     }
 
     fun getExpectedArrival(): String {
-        return if (expArrival == "00:00:00")
+        return if (expArrival == "00:00")
             ""
         else
             expArrival
     }
 
     fun getExpectedDeparture(): String {
-        return if (expDepart == "00:00:00")
+        return if (expDepart == "00:00")
             ""
         else
             expDepart
     }
 
     fun getScheduledArrival(): String {
-        return if (schArrival == "00:00:00")
+        return if (schArrival == "00:00")
             ""
         else
             schArrival
     }
 
     fun getScheduledDeparture(): String {
-        return if (schDepart == "00:00:00")
+        return if (schDepart == "00:00")
             ""
         else
             schDepart

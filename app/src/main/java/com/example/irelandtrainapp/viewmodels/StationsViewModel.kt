@@ -1,26 +1,33 @@
 package com.example.irelandtrainapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.irelandtrainapp.adapters.StationsAdapter
 import com.example.irelandtrainapp.dtos.StationDTO
-import com.example.irelandtrainapp.repositories.RailRepository
+import java.util.*
 
-class StationsViewModel : ViewModel() {
+class StationsViewModel : BaseViewModel() {
 
-    private val railRepository = RailRepository.instance
-    var trains = MutableLiveData<List<StationDTO>>()
-    var loading = MutableLiveData<Boolean>()
-    var error = MutableLiveData<String>()
-    var stationsAdapter : StationsAdapter? = null
+    var stations = MutableLiveData<List<StationDTO>>()
+    var stationsAdapter: StationsAdapter? = null
 
     fun loadStations() {
-        loading.value = true
-        railRepository.loadStations { resp, err ->
-            stationsAdapter?.updateStations(resp)
-            trains.value = resp
-            error.value = err
-            loading.value = false
+        if (stations.value == null || isExpired()) {
+            loading.value = true
+            railRepository.loadStations { resp, err ->
+                stationsAdapter?.updateStations(resp)
+                stations.value = resp
+                error.value = err
+                loading.value = false
+
+                if(resp?.size!! > 0) {
+                    resultMessage.value = null
+                }
+                else {
+                    resultMessage.value = "No station information available at this time"
+                }
+            }
+        } else {
+            stationsAdapter?.updateStations(stations.value)
         }
     }
 }

@@ -1,23 +1,17 @@
 package com.example.irelandtrainapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.irelandtrainapp.adapters.TrainsAdapter
 import com.example.irelandtrainapp.dtos.TrainDTO
-import com.example.irelandtrainapp.repositories.RailRepository
 import java.util.*
 
-class TrainsViewModel : ViewModel() {
+class TrainsViewModel : BaseViewModel() {
 
-    private val railRepository = RailRepository.instance
     var trains = MutableLiveData<List<TrainDTO>>()
-    var loading = MutableLiveData<Boolean>()
-    var error = MutableLiveData<String>()
     var trainsAdapter: TrainsAdapter? = null
-    private var lastUpdate: Date? = null
 
     fun loadTrains() {
-        if (trains.value == null || Date().time - lastUpdate!!.time > 60000) {
+        if (trains.value == null || isExpired()) {
             loading.value = true
             railRepository.loadTrains { resp, err ->
                 trainsAdapter?.updateTrains(resp)
@@ -25,6 +19,13 @@ class TrainsViewModel : ViewModel() {
                 error.value = err
                 loading.value = false
                 lastUpdate = Date()
+
+                if(resp?.size!! > 0) {
+                    resultMessage.value = null
+                }
+                else {
+                    resultMessage.value = "No trains scheduled at this time"
+                }
             }
         } else {
             trainsAdapter?.updateTrains(trains.value)

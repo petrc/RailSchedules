@@ -15,7 +15,7 @@ import com.example.irelandtrainapp.viewmodels.TrainSchedulesViewModel
 
 class TrainSchedulesFragment : Fragment() {
 
-    private lateinit var trainSchedluesViewModel: TrainSchedulesViewModel
+    private lateinit var trainSchedulesViewModel: TrainSchedulesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,27 +23,24 @@ class TrainSchedulesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        trainSchedluesViewModel = ViewModelProvider(this).get(TrainSchedulesViewModel::class.java)
-        trainSchedluesViewModel.trainSchedulesAdapter = TrainSchedulesAdapter {
+        trainSchedulesViewModel = ViewModelProvider(this).get(TrainSchedulesViewModel::class.java)
+        trainSchedulesViewModel.trainSchedulesAdapter = TrainSchedulesAdapter {
             val bundle = bundleOf("stationCode" to it.locationCode)
             view?.findNavController()
                 ?.navigate(R.id.action_trainSchedulesFragment_to_stationSchedulesFragment, bundle)
         }
 
-        val trainCode = arguments?.getString("trainCode")
-        val trainDate = arguments?.getString("trainDate")
-
-        activity?.actionBar?.let { bar ->
-            bar.title = trainCode
-        }
-
-        trainSchedluesViewModel.loadSchedules(trainCode, trainDate)
-
         val binding = TrainSchedulesFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.viewModel = trainSchedluesViewModel
+        binding.viewModel = trainSchedulesViewModel
         binding.recyclerViewSchedules.apply {
-            adapter = trainSchedluesViewModel.trainSchedulesAdapter
+            adapter = trainSchedulesViewModel.trainSchedulesAdapter
+        }
+
+        arguments?.let { args ->
+            val trainCode = args.getString("trainCode", "")
+            val trainDate = args.getString("trainDate", "")
+            trainSchedulesViewModel.loadSchedules(trainCode, trainDate)
         }
 
         return binding.root

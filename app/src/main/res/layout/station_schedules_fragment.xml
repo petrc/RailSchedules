@@ -35,12 +35,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.schedules.size() > 0 ? `` : `No scheduled trains at this time`}"
+            android:text="@{viewModel.resultMessage}"
             android:textSize="14sp"
+            android:visibility="@{viewModel.resultMessage != null ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Result message" />
 
         <ProgressBar
             android:layout_width="wrap_content"
