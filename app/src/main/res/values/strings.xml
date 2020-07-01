@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Ireland Train App</string>
+    <string name="origin_label">Origin</string>
+    <string name="last_location_label">Last Location</string>
+    <string name="destination_label">Destination</string>
+    <string name="depart_label">Departure</string>
+    <string name="arrive_label">Arrival</string>
+    <string name="expected_label">Expected</string>
+    <string name="scheduled_label">Scheduled</string>
+    <string name="due_label">Due in</string>
+    <string name="minutes_label">minutes</string>
+    <string name="stations_label">Stations</string>
+</resources>

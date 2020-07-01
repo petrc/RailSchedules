@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.irelandtrainapp.fragments.MainFragment"
+        android:label="Irish Rail"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_stationsFragment"
+            app:destination="@id/stationsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_trainsFragment"
+            app:destination="@id/trainsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stationsFragment"
+        android:name="com.example.irelandtrainapp.fragments.StationsFragment"
+        android:label="Select a station"
+        tools:layout="@layout/stations_fragment">
+        <action
+            android:id="@+id/action_stationsFragment_to_stationSchedulesFragment"
+            app:destination="@id/stationSchedulesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stationSchedulesFragment"
+        android:name="com.example.irelandtrainapp.fragments.StationSchedulesFragment"
+        android:label="Station schedules"
+        tools:layout="@layout/station_schedules_fragment">
+        <action
+            android:id="@+id/action_stationSchedulesFragment_to_trainSchedulesFragment"
+            app:destination="@id/trainSchedulesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainsFragment"
+        android:name="com.example.irelandtrainapp.fragments.TrainsFragment"
+        android:label="Select a train"
+        tools:layout="@layout/trains_fragment">
+        <action
+            android:id="@+id/action_trainsFragment_to_trainSchedulesFragment"
+            app:destination="@id/trainSchedulesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainSchedulesFragment"
+        android:name="com.example.irelandtrainapp.fragments.TrainSchedulesFragment"
+        android:label="Train schedule"
+        tools:layout="@layout/train_schedules_fragment">
+        <argument
+            android:name="trainCode"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_trainSchedulesFragment_to_stationSchedulesFragment"
+            app:destination="@id/stationSchedulesFragment" />
+    </fragment>
+</navigation>

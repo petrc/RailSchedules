@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="trainScheduleDTO"
+            type="com.example.irelandtrainapp.dtos.TrainScheduleDTO" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:src="@{trainScheduleDTO.locationImage}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_destination" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewLocationName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{trainScheduleDTO.locationFullName + ` (` + trainScheduleDTO.locationCode + `)`}"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="Location Name" />
+
+                <TextView
+                    android:id="@+id/textViewArriveLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/arrive_label"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:visibility="@{trainScheduleDTO.hasArrivalTimes() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewDepartLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewLocationName" />
+
+                <TextView
+                    android:id="@+id/textViewSchArriveLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/scheduled_label"
+                    android:textSize="8sp"
+                    android:visibility="@{trainScheduleDTO.scheduledArrival.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewExpArriveLabel"
+                    app:layout_constraintStart_toStartOf="@+id/textViewArriveLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewArriveLabel" />
+
+                <TextView
+                    android:id="@+id/textViewSchArrive"
+                    android:layout_width="36dp"
+                    android:layout_height="18dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{trainScheduleDTO.schArrival}"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="@{trainScheduleDTO.scheduledArrival.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewSchArriveLabel"
+                    app:layout_constraintStart_toStartOf="@+id/textViewSchArriveLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSchArriveLabel"
+                    tools:text="14:20" />
+
+                <TextView
+                    android:id="@+id/textViewExpArriveLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/expected_label"
+                    android:textSize="8sp"
+                    android:visibility="@{trainScheduleDTO.expectedArrival.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewArriveLabel"
+                    app:layout_constraintStart_toEndOf="@id/textViewSchArriveLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewArriveLabel" />
+
+                <TextView
+                    android:id="@+id/textViewExpArrive"
+                    android:layout_width="36dp"
+                    android:layout_height="18dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{trainScheduleDTO.expArrival}"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="@{trainScheduleDTO.expectedArrival.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewExpArriveLabel"
+                    app:layout_constraintStart_toStartOf="@+id/textViewExpArriveLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewExpArriveLabel"
+                    tools:text="14:23" />
+
+
+                <TextView
+                    android:id="@+id/textViewDepartLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/depart_label"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="12sp"
+                    android:visibility="@{trainScheduleDTO.hasDepartureTimes() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textViewArriveLabel"
+                    app:layout_constraintTop_toTopOf="@+id/textViewArriveLabel" />
+
+                <TextView
+                    android:id="@+id/textViewSchDepartLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/scheduled_label"
+                    android:textSize="8sp"
+                    android:visibility="@{trainScheduleDTO.scheduledDeparture.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewExpDepartLabel"
+                    app:layout_constraintStart_toStartOf="@+id/textViewDepartLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDepartLabel" />
+
+                <TextView
+                    android:id="@+id/textViewExpDepartLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/expected_label"
+                    android:textSize="8sp"
+                    android:visibility="@{trainScheduleDTO.expectedDeparture.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewDepartLabel"
+                    app:layout_constraintStart_toEndOf="@+id/textViewSchDepartLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDepartLabel" />
+
+                <TextView
+                    android:id="@+id/textViewExpDepart"
+                    android:layout_width="36dp"
+                    android:layout_height="18dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{trainScheduleDTO.expDepart}"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="@{trainScheduleDTO.expectedDeparture.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewExpDepartLabel"
+                    app:layout_constraintStart_toStartOf="@+id/textViewExpDepartLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewExpDepartLabel"
+                    tools:text="14:24" />
+
+                <TextView
+                    android:id="@+id/textViewSchDepart"
+                    android:layout_width="36dp"
+                    android:layout_height="18dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{trainScheduleDTO.schDepart}"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="@{trainScheduleDTO.scheduledDeparture.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewSchDepartLabel"
+                    app:layout_constraintStart_toStartOf="@+id/textViewSchDepartLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSchDepartLabel"
+                    tools:text="14:21" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <View
+            android:id="@+id/viewLineTop"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/colorBlack"
+            android:visibility="@{trainScheduleDTO.locationType.equals(`O`) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/viewLineBottom"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorBlack"
+            android:visibility="@{trainScheduleDTO.locationType.equals(`D`) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
