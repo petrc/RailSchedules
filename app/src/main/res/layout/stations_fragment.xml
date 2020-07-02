@@ -5,9 +5,11 @@
     tools:context=".fragments.StationsFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.irelandtrainapp.viewmodels.StationsViewModel" />
+
         <import type="android.view.View" />
     </data>
 
@@ -17,18 +19,62 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:elevation="8dp"
+            android:visibility="@{viewModel.searchActive ? View.VISIBLE : View.GONE}"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextTextSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:text="@{viewModel.searchText}"
+                    android:hint="@string/search_stations"
+                    android:inputType="text"
+                    android:onTextChanged="@{viewModel.onTextChanged}" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="@{() -> viewModel.clearSearch()}"
+                    android:src="@drawable/ic_close" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewStations"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/colorWhite"
+            android:clipToPadding="false"
             android:orientation="vertical"
+            android:paddingTop="@{viewModel.searchActive ? @dimen/dp80 : @dimen/dp0 }"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/station_list_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/station_list_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
             android:layout_width="wrap_content"

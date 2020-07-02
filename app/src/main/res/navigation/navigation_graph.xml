@@ -11,10 +11,18 @@
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_stationsFragment"
-            app:destination="@id/stationsFragment" />
+            app:destination="@id/stationsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_mainFragment_to_trainsFragment"
-            app:destination="@id/trainsFragment" />
+            app:destination="@id/trainsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/stationsFragment"
@@ -23,7 +31,11 @@
         tools:layout="@layout/stations_fragment">
         <action
             android:id="@+id/action_stationsFragment_to_stationSchedulesFragment"
-            app:destination="@id/stationSchedulesFragment" />
+            app:destination="@id/stationSchedulesFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/stationSchedulesFragment"
@@ -35,7 +47,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_stationSchedulesFragment_to_trainSchedulesFragment"
-            app:destination="@id/trainSchedulesFragment" />
+            app:destination="@id/trainSchedulesFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/trainsFragment"
@@ -44,7 +60,11 @@
         tools:layout="@layout/trains_fragment">
         <action
             android:id="@+id/action_trainsFragment_to_trainSchedulesFragment"
-            app:destination="@id/trainSchedulesFragment" />
+            app:destination="@id/trainSchedulesFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/trainSchedulesFragment"
@@ -56,6 +76,10 @@
             app:argType="string" />
         <action
             android:id="@+id/action_trainSchedulesFragment_to_stationSchedulesFragment"
-            app:destination="@id/stationSchedulesFragment" />
+            app:destination="@id/stationSchedulesFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
 </navigation>

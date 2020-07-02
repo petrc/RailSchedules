@@ -10,4 +10,7 @@
     <string name="due_label">Due in</string>
     <string name="minutes_label">minutes</string>
     <string name="stations_label">Stations</string>
+    <string name="trains_label">Trains</string>
+    <string name="search">Search</string>
+    <string name="search_stations">Search stations</string>
 </resources>

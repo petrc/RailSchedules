@@ -11,9 +11,18 @@ open class BaseViewModel : ViewModel() {
     var loading = MutableLiveData<Boolean>()
     var resultMessage = MutableLiveData<String>()
     var error = MutableLiveData<String>()
+    var searchActive = MutableLiveData<Boolean>(false)
 
     fun isExpired(): Boolean {
         // if last update older than 1 minute
         return lastUpdate == null || Date().time - lastUpdate!!.time > 60000
+    }
+
+    fun toggleSearch() {
+        searchActive.value = !searchActive.value!!
+
+        if(searchActive.value!!) {
+
+        }
     }
 }

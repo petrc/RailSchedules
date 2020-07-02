@@ -18,6 +18,7 @@ class StationSchedulesViewModel : BaseViewModel() {
                 schedules.value = resp
                 error.value = err
                 loading.value = false
+                lastUpdate = Date()
 
                 if(resp?.size!! > 0) {
                     resultMessage.value = null

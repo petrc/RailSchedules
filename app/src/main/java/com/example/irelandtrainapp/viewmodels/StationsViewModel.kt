@@ -8,6 +8,7 @@ import java.util.*
 class StationsViewModel : BaseViewModel() {
 
     var stations = MutableLiveData<List<StationDTO>>()
+    var searchText = MutableLiveData<String>("")
     var stationsAdapter: StationsAdapter? = null
 
     fun loadStations() {
@@ -18,16 +19,44 @@ class StationsViewModel : BaseViewModel() {
                 stations.value = resp
                 error.value = err
                 loading.value = false
+                lastUpdate = Date()
 
-                if(resp?.size!! > 0) {
+                if (resp?.size!! > 0) {
                     resultMessage.value = null
-                }
-                else {
+                } else {
                     resultMessage.value = "No station information available at this time"
                 }
             }
         } else {
             stationsAdapter?.updateStations(stations.value)
         }
+    }
+
+    fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        searchText.value = s.toString()
+        if (s.isNotEmpty()) {
+            val filteredStations = stations.value?.filter { station ->
+                station.description.startsWith(s, true) ||
+                        station.code.startsWith(s, true)
+            } as MutableList
+
+            filteredStations.addAll(stations.value?.filter { station ->
+                station.description.contains(s, true) ||
+                        station.code.contains(s, true)
+            } as MutableList)
+
+            stationsAdapter?.updateStations(filteredStations.distinct())
+        } else {
+            stationsAdapter?.updateStations(stations.value)
+        }
+    }
+
+
+    fun clearSearch() {
+        searchText.value?.let {
+            if (it.isEmpty()) searchActive.value = false
+        }
+
+        searchText.value = ""
     }
 }
