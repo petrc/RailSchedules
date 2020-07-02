@@ -7,7 +7,6 @@ import com.example.irelandtrainapp.R
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
-
 @Root(name = "objTrainMovements", strict = false)
 class TrainScheduleDTO @JvmOverloads constructor(
     @field:Element(name = "TrainCode")

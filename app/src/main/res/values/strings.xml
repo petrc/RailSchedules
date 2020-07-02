@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ireland Train App</string>
+    <string name="app_name">Irish Rail</string>
     <string name="origin_label">Origin</string>
     <string name="last_location_label">Last Location</string>
     <string name="destination_label">Destination</string>

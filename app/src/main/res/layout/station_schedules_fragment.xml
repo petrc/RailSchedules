@@ -5,11 +5,9 @@
     tools:context=".fragments.StationSchedulesFragment">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.irelandtrainapp.viewmodels.StationSchedulesViewModel" />
-
         <import type="android.view.View" />
     </data>
 

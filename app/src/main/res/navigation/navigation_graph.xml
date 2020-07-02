@@ -29,7 +29,6 @@
         android:id="@+id/stationSchedulesFragment"
         android:name="com.example.irelandtrainapp.fragments.StationSchedulesFragment"
         android:label="{stationCode}"
-        android:sublabel=""
         tools:layout="@layout/station_schedules_fragment">
         <argument
             android:name="stationCode"

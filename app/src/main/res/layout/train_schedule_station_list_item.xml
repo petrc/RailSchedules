@@ -28,6 +28,31 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/ic_destination" />
 
+        <View
+            android:id="@+id/viewLineTop"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/colorBlack"
+            android:visibility="@{trainScheduleDTO.locationType.equals(`O`) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/viewLineBottom"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorBlack"
+            android:visibility="@{trainScheduleDTO.locationType.equals(`D`) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -149,6 +174,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/textViewDepartLabel" />
 
                 <TextView
+                    android:id="@+id/textViewSchDepart"
+                    android:layout_width="36dp"
+                    android:layout_height="18dp"
+                    android:text="@{trainScheduleDTO.schDepart}"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="@{trainScheduleDTO.scheduledDeparture.length() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewSchDepartLabel"
+                    app:layout_constraintStart_toStartOf="@+id/textViewSchDepartLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSchDepartLabel"
+                    tools:text="14:21" />
+
+                <TextView
                     android:id="@+id/textViewExpDepartLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,45 +209,9 @@
                     app:layout_constraintTop_toBottomOf="@+id/textViewExpDepartLabel"
                     tools:text="14:24" />
 
-                <TextView
-                    android:id="@+id/textViewSchDepart"
-                    android:layout_width="36dp"
-                    android:layout_height="18dp"
-                    android:text="@{trainScheduleDTO.schDepart}"
-                    android:textColor="@color/colorBlack"
-                    android:visibility="@{trainScheduleDTO.scheduledDeparture.length() > 0 ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="@+id/textViewSchDepartLabel"
-                    app:layout_constraintStart_toStartOf="@+id/textViewSchDepartLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewSchDepartLabel"
-                    tools:text="14:21" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-
-        <View
-            android:id="@+id/viewLineTop"
-            android:layout_width="2dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="4dp"
-            android:background="@color/colorBlack"
-            android:visibility="@{trainScheduleDTO.locationType.equals(`O`) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <View
-            android:id="@+id/viewLineBottom"
-            android:layout_width="2dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:background="@color/colorBlack"
-            android:visibility="@{trainScheduleDTO.locationType.equals(`D`) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
