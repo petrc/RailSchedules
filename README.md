@@ -1,4 +1,4 @@
-# Irish Rail App
+# Irish Rail Schedules App
 
 An Android application for viewing train schedules as provided by the Irish Rail service: http://api.irishrail.ie/realtime/
 
